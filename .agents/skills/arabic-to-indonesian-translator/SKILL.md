@@ -79,6 +79,58 @@ User bisa minta switch gaya kapan saja. Ikuti instruksinya:
 | "ringkas"              | Maknawiyah tanpa blok Arab/Catatan, langsung paragraf Indonesia.|
 | "akademik"             | Maknawiyah + transliterasi + catatan kaki penuh.               |
 
+## Ikuti Register Penulis Asli
+
+Maknawiyah **bukan berarti selalu formal-akademis**. Terjemahan harus mengikuti
+*register* (nada/tingkat bahasa) dari penulis asli. Identifikasi genre & nada
+penulis sebelum memilih diksi Indonesia:
+
+| Register teks asli        | Diksi Indonesia yang dipakai                                    |
+| ------------------------- | --------------------------------------------------------------- |
+| **Akademis-analitis**     | Kalimat berlapis, konjungsi eksplisit ("kendati", "justru"),    |
+| (kitab turats, kajian     | diksi teknis. Kalimat panjang tidak dipecah paksa selama nafas  |
+|  sosiologi, tafsir)       | argumen masih jelas.                                            |
+| **Jurnalistik / polemis** | Kalimat pendek, tajam, langsung. Konjungsi seperlunya. Diksi    |
+| (opini, kolom, esai)      | umum. Pertahankan ritme retoris penulis.                        |
+| **Sastrawi / naratif**    | Variasi panjang kalimat, diksi sedikit lebih berima. Jaga       |
+| (sirah, kisah, biografi)  | nuansa emosional.                                               |
+| **Dakwah / khuthbah**     | Gaya lugas khotbah Indonesia. Kalimat penegasan berulang        |
+|                           | dipertahankan, tidak dipangkas.                                 |
+| **Fiqih praktis / fatwa** | Kalimat deklaratif lugas. Istilah teknis fiqih dipertahankan.   |
+|                           | Tidak ditambah hiasan sastrawi.                                 |
+| **Campuran** (hibrida)    | Switch register per-paragraf mengikuti nada penulis. Contoh:    |
+|                           | al-Qimni mencampur sosiologi analitis dengan polemik jurnalistik|
+|                           | — terjemahan mengikuti: berat di eksposisi, punchy di argumen.  |
+
+### Cara mendeteksi register penulis
+
+Sebelum mulai terjemahan panjang, baca 1-2 paragraf sample dari awal teks.
+Perhatikan:
+
+- **Panjang rata-rata kalimat** — pendek (<15 kata) = jurnalistik;
+  panjang (>30 kata) dengan konjungsi berlapis = akademis.
+- **Diksi** — istilah disiplin (sosiologi/fiqih/nahwu) = akademis;
+  kata umum + kiasan = populer/sastrawi.
+- **Nada terhadap pembaca** — impersonal/deskriptif = akademis;
+  langsung/retoris ("lihatlah…", "maka jelaslah…") = polemis/dakwah.
+- **Kepadatan rujukan** — banyak kutipan + catatan kaki = akademis;
+  sedikit/nihil = populer.
+
+Kalau ragu, pakai baseline **akademis-moderat** (level kolom opini Koran Tempo,
+bukan jurnal ilmiah).
+
+### Anti-pola register
+
+- ❌ Semua teks Arab diterjemah jadi Indonesia-akademik berat ("sekiranya",
+  "di mana hal tersebut", "dalam kerangka") meskipun penulis aslinya santai.
+- ❌ Semua teks Arab diterjemah jadi Indonesia-percakapan meskipun penulis
+  aslinya ulama klasik.
+- ❌ Memecah kalimat panjang penulis akademis jadi kalimat pendek hanya
+  supaya "lebih enak dibaca" — itu **mengubah register**, bukan
+  menerjemahkan.
+- ❌ Menyambung kalimat pendek penulis polemis jadi kalimat panjang hanya
+  karena "terasa kurang serius" — sama: mengubah register.
+
 ## Penanganan Khusus
 
 ### Ayat Al-Qur'an
