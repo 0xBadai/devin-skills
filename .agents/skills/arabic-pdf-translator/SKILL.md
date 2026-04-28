@@ -235,17 +235,50 @@ strategi berikut:
    )
    ```
 
-4. **Untuk export PDF dengan Amiri** (kalau user minta PDF final), pakai
-   `weasyprint` dari HTML di atas, atau `pandoc` dengan `--pdf-engine=xelatex`:
+4. **Untuk export PDF dengan Amiri** (kalau user minta PDF final), ada 2
+   cara dengan `--pdf-engine=xelatex`:
+
+   **(a) Cara sederhana** — Amiri jadi main font (Amiri punya glif Latin
+   yang memadai, jadi teks Latin pun masih rapi):
+
+   ```bash
+   pandoc input.md -o output.pdf \
+     --pdf-engine=xelatex \
+     -V mainfont="Amiri" \
+     -V fontsize=11pt
+   ```
+
+   **(b) Cara proper (mixed-script)** — Latin pakai font Serif, Arabic
+   pakai Amiri via `polyglossia`. Bikin file `header.tex`:
+
+   ```latex
+   \usepackage{polyglossia}
+   \setmainlanguage{indonesian}
+   \setotherlanguage{arabic}
+   \newfontfamily\arabicfont[Script=Arabic]{Amiri}
+   ```
+
+   Lalu export:
 
    ```bash
    pandoc input.md -o output.pdf \
      --pdf-engine=xelatex \
      -V mainfont="Georgia" \
-     -V CJKmainfont="Amiri" \
+     -H header.tex \
      -V fontsize=11pt
    ```
-   Catatan: font Amiri harus ter-install di sistem (`sudo apt-get install fonts-hosny-amiri`).
+
+   Supaya polyglossia benar-benar memakai `\arabicfont` untuk blok Arabic,
+   pastikan semua blok Arab di `.md` dibungkus `<div lang="ar" dir="rtl">`
+   (strategi 2 di atas). Pandoc akan menerjemahkan itu jadi perintah
+   `\begin{arabic}...\end{arabic}` di LaTeX.
+
+   > ⚠ **Jangan pakai** `-V CJKmainfont="Amiri"` — variabel itu khusus
+   > untuk font Chinese/Japanese/Korean di paket `xeCJK`, dan **tidak
+   > berpengaruh** pada rendering teks Arab.
+
+   Font Amiri harus ter-install di sistem — env config repo ini sudah
+   meng-install `fonts-hosny-amiri` otomatis.
 
 **Default delivery:**
 - Selalu sertakan CSS hint (strategi 1) + lang/dir wrapper (strategi 2) di
