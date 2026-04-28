@@ -18,3 +18,8 @@ Devin sebagai panduan perilaku ketika skill tersebut diaktifkan.
 
 - **[arabic-to-indonesian-translator](.agents/skills/arabic-to-indonesian-translator/SKILL.md)** —
   Penerjemah Arab → Indonesia dengan gaya *maknawiyah* (berbasis makna).
+- **[arabic-pdf-translator](.agents/skills/arabic-pdf-translator/SKILL.md)** —
+  Workflow untuk menerjemahkan **file PDF berbahasa Arab** (puluhan-ratusan
+  halaman) ke satu file markdown per dokumen. Menggunakan `pdftotext` untuk
+  PDF text-based dan Tesseract OCR untuk PDF scan. Memperluas skill
+  penerjemah dasar di atas.
