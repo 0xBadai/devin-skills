@@ -180,10 +180,89 @@ gaya *maknawiyah*, format **Arab + Indonesia + Catatan**.
 
 ## 5. Output: Satu `.md` per PDF
 
+### Font rendering untuk teks Arab
+
+**User preferensi: font Amiri** ([Amiri Font](https://www.amirifont.org/) —
+OFL, khusus dirancang untuk tipografi Arab gaya Naskhi klasik).
+
+Markdown tidak menentukan font sendiri — font ditentukan oleh viewer. Untuk
+memastikan blok Arab di output markdown ditampilkan dengan Amiri, pakai
+strategi berikut:
+
+1. **Markdown dengan hint font (standar).** Di awal file `.md`, sisipkan
+   blok HTML tersembunyi yang akan dihormati sebagian viewer (VS Code,
+   pandoc, markdown preview):
+
+   ```markdown
+   <style>
+   /* User preferensi: Arabic text uses Amiri font */
+   @import url('https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+   :lang(ar), [dir="rtl"] { font-family: 'Amiri', 'Traditional Arabic', serif; font-size: 1.15em; line-height: 1.9; }
+   </style>
+   ```
+
+2. **Bungkus blok Arab dengan RTL lang tag** supaya selector CSS di atas
+   menangkap:
+
+   ```markdown
+   **Arab:**
+   <div lang="ar" dir="rtl">
+
+   فبرغم التفكك القبلي في بيئة البداوة...
+
+   </div>
+   ```
+
+3. **Generate HTML sidecar otomatis.** Untuk delivery final, selain `.md`
+   juga generate `.html` dengan Amiri embedded (pakai pandoc):
+
+   ```bash
+   pandoc input.md \
+     -o output.html \
+     --standalone \
+     --metadata title="<Judul ID>" \
+     -H <(cat <<'EOF'
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+   <style>
+     body { font-family: Georgia, serif; line-height: 1.7; max-width: 780px; margin: 2em auto; padding: 0 1em; }
+     [lang="ar"], [dir="rtl"] { font-family: 'Amiri', 'Traditional Arabic', serif; font-size: 1.25em; line-height: 2.0; }
+     blockquote { border-left: 3px solid #888; padding-left: 1em; color: #555; }
+     h1, h2, h3 { font-family: Georgia, serif; }
+   </style>
+   EOF
+   )
+   ```
+
+4. **Untuk export PDF dengan Amiri** (kalau user minta PDF final), pakai
+   `weasyprint` dari HTML di atas, atau `pandoc` dengan `--pdf-engine=xelatex`:
+
+   ```bash
+   pandoc input.md -o output.pdf \
+     --pdf-engine=xelatex \
+     -V mainfont="Georgia" \
+     -V CJKmainfont="Amiri" \
+     -V fontsize=11pt
+   ```
+   Catatan: font Amiri harus ter-install di sistem (`sudo apt-get install fonts-hosny-amiri`).
+
+**Default delivery:**
+- Selalu sertakan CSS hint (strategi 1) + lang/dir wrapper (strategi 2) di
+  `.md` — zero cost, banyak viewer menghormati.
+- Generate HTML sidecar (strategi 3) **kalau user minta preview yang
+  well-rendered** atau saat delivery final.
+- Export PDF (strategi 4) **hanya on-demand**.
+
 ### Struktur file
 
 ```markdown
 # <Judul Arab>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+:lang(ar), [dir="rtl"] { font-family: 'Amiri', 'Traditional Arabic', serif; font-size: 1.15em; line-height: 1.9; }
+</style>
 
 **Judul (ID):** <Terjemahan judul>
 **Penulis:** <Nama penulis + transliterasi>
